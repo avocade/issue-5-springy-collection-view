@@ -29,10 +29,10 @@
 -(id)init {
     if (!(self = [super init])) return nil;
     
-    self.minimumInteritemSpacing = 10;
-    self.minimumLineSpacing = 10;
-    self.itemSize = CGSizeMake(44, 44);
-    self.sectionInset = UIEdgeInsetsMake(10, 10, 10, 10);
+    self.minimumInteritemSpacing = 2;
+    self.minimumLineSpacing = 4;
+    self.itemSize = CGSizeMake(104, 104);
+    self.sectionInset = UIEdgeInsetsMake(10, 0, 10, 0);
     
     self.dynamicAnimator = [[UIDynamicAnimator alloc] initWithCollectionViewLayout:self];
     self.visibleIndexPathsSet = [NSMutableSet set];

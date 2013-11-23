@@ -31,10 +31,28 @@ static NSString *CellIdentifier = @"Cell";
     return 10000;
 }
 
+const NSInteger cellImageViewTag = 100;
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
+
+    UIImageView *imageView = nil;
+    imageView = cell.contentView.subviews.firstObject;
+    if (!imageView || cellImageViewTag != imageView.tag)
+    {
+        imageView = [[UIImageView alloc] initWithFrame:cell.bounds];
+        imageView.tag = cellImageViewTag;
+        [cell.contentView addSubview:imageView];
+    }
     
     cell.backgroundColor = [UIColor orangeColor];
+    
+    NSInteger totalImagesCount = 27;
+    NSInteger cellIndex = (indexPath.row + indexPath.section);  // From 1 to infinity
+    NSInteger imageNumber = (cellIndex % totalImagesCount) + 1;  // From item-1 to item-28
+    
+    NSString *name = [NSString stringWithFormat:@"item-%i.jpg", imageNumber];
+    UIImage *image = [UIImage imageNamed:name];
+    imageView.image = image;
     
     return cell;
 }
